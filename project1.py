@@ -41,12 +41,13 @@ attributeNames = np.asarray(df.columns[cols])
 M = len(attributeNames)
 
 #boxplots for each attribute one next to the other, WILL CHANGE THIS
-newdf = pd.DataFrame(data = np.random.random(size=(4,9)), columns = ['sbp','tobacco','ldl','adiposity', 'famhist', 'typea', 'obesity', 'alcohol', 'age'])
-newdf.boxplot()
+#newdf = pd.DataFrame(data = np.random.random(size=(4,9)), columns = ['sbp','tobacco','ldl','adiposity', 'famhist', 'typea', 'obesity', 'alcohol', 'age'])
+#newdf.boxplot()
 
 #dataframe without the chd column
 df_noCHD = newdf.drop(columns = 'chd')
 
+"""
 #this is not finished
 fig = plt.figure()
 fig.subplots_adjust(hspace=.3)
@@ -56,3 +57,18 @@ for i in range(0,8):
     plt.title(attributeNames[i])
 plt.suptitle("Boxplot of the attributes")
 plt.show()
+"""
+
+#second attempt at boxplots
+for column in df_noCHD:
+    plt.figure()
+    df_noCHD.boxplot([column])
+    plt.gca().set(ylabel='Frequency')
+    #plt.title(attributeNames[column])
+
+
+
+
+
+
+
