@@ -62,9 +62,8 @@ plt.show()
 #second attempt at boxplots
 for column in df_noCHD:
     plt.figure()
-    df_noCHD.boxplot([column])
+    df_noCHD.boxplot([column], patch_artist=True, boxprops=dict(facecolor="lightcyan", color="darkcyan"), medianprops=dict(color="darkcyan"))
     plt.gca().set(ylabel='Frequency')
-    #plt.title(attributeNames[column])
 
 
 
