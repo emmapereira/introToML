@@ -38,28 +38,33 @@ cols = range(1, 9)
 
 #extract attribute names
 attributeNames = np.asarray(df.columns[cols])
-M = len(attributeNames)
+#M = len(attributeNames)
 
-#boxplots for each attribute one next to the other, WILL CHANGE THIS
-#newdf = pd.DataFrame(data = np.random.random(size=(4,9)), columns = ['sbp','tobacco','ldl','adiposity', 'famhist', 'typea', 'obesity', 'alcohol', 'age'])
-#newdf.boxplot()
+
 
 #dataframe without the chd column
 df_noCHD = newdf.drop(columns = 'chd')
 
-"""
-#this is not finished
-fig = plt.figure()
-fig.subplots_adjust(hspace=.3)
-for i in range(0,8):
-    plt.subplot()
-    plt.boxplot(df_noCHD.iloc[0:462,i],notch=True,vert=False)
-    plt.title(attributeNames[i])
-plt.suptitle("Boxplot of the attributes")
-plt.show()
-"""
 
-#second attempt at boxplots
+#print some statistics on each column
+def datastatistics(df):
+
+
+    mean_df = df.mean()
+    std_df = df.std(ddof=1)
+    min_df = df.min()
+    max_df = df.max()
+    
+    print( "the mean of each attribute is: ", mean_df)
+    print( "the standard deviation of each attribute is: ", std_df)
+    print( "the min of each attribute is: ", min_df)
+    print( "the max of each attribute is: ", max_df)
+        
+        
+datastatistics(df_noCHD)
+
+
+#boxplots for each attribute
 for column in df_noCHD:
     plt.figure()
     df_noCHD.boxplot([column], patch_artist=True, boxprops=dict(facecolor="lightcyan", color="darkcyan"), medianprops=dict(color="darkcyan"))
@@ -94,7 +99,6 @@ for col1 in df_noCHD.columns: #numerical_col:
     
 
 plt.show()
-
 
 
 
