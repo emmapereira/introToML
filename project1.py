@@ -64,6 +64,36 @@ for column in df_noCHD:
     plt.figure()
     df_noCHD.boxplot([column], patch_artist=True, boxprops=dict(facecolor="lightcyan", color="darkcyan"), medianprops=dict(color="darkcyan"))
     plt.gca().set(ylabel='Frequency')
+  
+
+#correlation plot 
+M = len(df_noCHD.columns)
+C = len(df["chd"].unique())
+
+fig, ax = plt.subplots(M,M,figsize=(20,20))
+i = 0
+j= 0
+for col1 in df_noCHD.columns: #numerical_col:
+    for col2 in df_noCHD.columns: #numerical_col:
+        for c in range(C):
+            class_mask = (df["chd"]==c)
+
+            ax[i,j].scatter(df_noCHD.loc[class_mask,col2], df_noCHD.loc[class_mask,col1],alpha=0.3)
+            
+        if j == 0:
+            ax[i,j].set_ylabel(col1)
+        if i == M-1:
+            ax[i,j].set_xlabel(col2)
+            
+        if i == M-1 and  j == M-1:
+            ax[i,j].legend(range(C))
+            
+        j += 1
+    j = 0
+    i += 1
+    
+
+plt.show()
 
 
 
