@@ -56,14 +56,18 @@ def datastatistics(df):
     std_df = df.std(ddof=1)
     min_df = df.min()
     max_df = df.max()
+    var_df = df.var()
     
     print( "the mean of each attribute is: ", mean_df)
     print( "the standard deviation of each attribute is: ", std_df)
     print( "the min of each attribute is: ", min_df)
     print( "the max of each attribute is: ", max_df)
+    print( "the variance of each attribute is: ", var_df)
         
         
 datastatistics(df_noCHD)
+covmat = df_noCHD.cov()
+corrmat = df_noCHD.corr()
 
 
 # boxplots for each attribute
@@ -197,5 +201,5 @@ def pca_computations(cleandf):
     plt.grid()
     plt.show()
  
-
+    
 pca_computations(df_noCHD)
